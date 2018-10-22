@@ -1818,7 +1818,8 @@ def _construct_metadata_for_test_from_package(package, config):
     #     of variables in the hash_input suffices, though.
     metadata.config.used_vars = list(hash_input.keys())
     metadata.config.channel_urls = list(utils.ensure_list(metadata.config.channel_urls))
-    metadata.config.channel_urls.insert(0, url_path(local_channel))
+    if "local" not in metadata.config.channel_urls:
+        metadata.config.channel_urls.insert(0, url_path(local_channel))
     return metadata, hash_input
 
 
